@@ -11,4 +11,12 @@ From SF recipes :
 From composer : 
 ```
 
+## Twig
+Configuration
+```
+Define new namespace 
+> paths:
+   '%kernel.project_dir%/src/Resources/views': App
+> callable by : @App/../template.html.twig
+```
 
