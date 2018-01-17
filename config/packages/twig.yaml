@@ -2,4 +2,4 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     paths:
-        '%kernel.project_dir%/src/Resources/views': App
+        '%kernel.project_dir%/src/Component/Enrich/Views/templates': Slab
