@@ -1,6 +1,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    locale: 'en'
 
 services:
     # default configuration for services in *this* file
@@ -21,6 +22,9 @@ services:
     # as action arguments even if you don't extend any base controller class
     Slab\Component\Core\Controller\:
         resource: '../src/Component/Core/Controller'
+        tags: ['controller.service_arguments']
+    Slab\Component\Security\Controller\:
+        resource: '../src/Component/Security/Controller'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed

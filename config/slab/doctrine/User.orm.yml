@@ -1,0 +1,43 @@
+##
+# Entity User
+#
+# @package     Slab\Component\Security\Entity
+# @author      Didier Youn <didier.youn@gmail.com>
+# @copyright   Copyright (c) 2018 Slabprea
+##
+Slab\Component\Security\Entity\User:
+    type: entity
+    table: slab_user
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        username:
+            type: string
+            unique: true
+            length: 255
+            nullable: false
+        email:
+            type: string
+            unique: true
+            length: 255
+            nullable: false
+        firstname:
+            type: string
+            unique: false
+            length: 255
+            nullable: true
+        lastname:
+            type: string
+            unique: false
+            length: 255
+            nullable: true
+        password:
+            type: text
+            unique: false
+            nullable: false
+        salt:
+            type: text
+            unique: false
+            nullable: false

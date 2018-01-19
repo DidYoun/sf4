@@ -1,3 +1,7 @@
+# Slab Routes
 slab_core:
     resource: ../../src/Component/Core/Controller/
+    type: annotation
+slab_security:
+    resource: ../../src/Component/Security/Controller/
     type: annotation

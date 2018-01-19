@@ -1,0 +1,13 @@
+{% extends '@Slab/Core/layout.html.twig' %}
+{% block body %}
+    <div class="container">
+        {% if errors %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Login!</h1>
+            </div>
+        </div>
+    </div>
+{% endblock %}
