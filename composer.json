@@ -16,6 +16,7 @@
         "symfony/yaml": "^4.0"
     },
     "require-dev": {
+        "phpspec/phpspec": "^4.3",
         "sensiolabs/security-checker": "^4.1",
         "symfony/dotenv": "^4.0",
         "symfony/profiler-pack": "^1.0",
@@ -44,6 +45,7 @@
         "symfony/polyfill-php56": "*"
     },
     "scripts": {
+        "test": "./vendor/bin/phpspec run --config .phpspec.yml",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",

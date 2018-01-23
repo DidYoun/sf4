@@ -1,0 +1,8 @@
+suites:
+  slab_suites:
+    namespace: Slab
+    psr4_prefix: Slab
+    src_path: src
+    spec_path: tests
+
+formatter.name: pretty
