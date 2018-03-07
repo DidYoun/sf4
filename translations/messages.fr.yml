@@ -3,3 +3,8 @@
 ###########################################
 core:
   index: 'Index FR'
+security:
+  login:
+    label:
+      username: 'Nom de l''utilisateur'
+      password: 'Mot de passe'

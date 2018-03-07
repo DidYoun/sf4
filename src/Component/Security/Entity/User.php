@@ -2,7 +2,8 @@
 
 namespace Slab\Component\Security\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * Class User
@@ -11,8 +12,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @author      Didier Youn <didier.youn@gmail.com>
  * @copyright   Copyright (c) 2018 Slabprea
  */
-class User implements UserInterface
+class User implements AdvancedUserInterface, \Serializable
 {
+
     /** @var int */
     protected $id;
 
@@ -23,10 +25,10 @@ class User implements UserInterface
     protected $email;
 
     /** @var string */
-    protected $firstname;
+    protected $firstName;
 
     /** @var string */
-    protected $lastname;
+    protected $lastName;
 
     /** @var string */
     protected $password;
@@ -34,8 +36,19 @@ class User implements UserInterface
     /** @var string */
     protected $salt;
 
+    /** @var bool */
+    protected $isActive;
+
     /** @var [] */
     protected $roles;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->roles = new ArrayCollection();
+    }
 
     /** @return int */
     public function getId(): int
@@ -91,8 +104,8 @@ class User implements UserInterface
         $this->lastName = $lastName;
     }
 
-    /** @return array */
-    public function getRoles() : array
+    /** @return ArrayCollection */
+    public function getRoles()
     {
         return $this->roles;
     }
@@ -121,6 +134,12 @@ class User implements UserInterface
         $this->password = $password;
     }
 
+    /** @return bool */
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
+
     /** @return string */
     public function getSalt() : ?string
     {
@@ -135,5 +154,30 @@ class User implements UserInterface
 
     public function eraseCredentials()
     {
+    }
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function serialize()
+    {
+        // TODO: Implement serialize() method.
+    }
+
+    public function unserialize($serialized)
+    {
+        // TODO: Implement unserialize() method.
     }
 }

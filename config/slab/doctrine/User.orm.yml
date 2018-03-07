@@ -8,6 +8,7 @@
 Slab\Component\Security\Entity\User:
     type: entity
     table: slab_user
+    repositoryClass: Slab\Component\Security\Repository\UserRepository
     id:
         id:
             type: integer
@@ -23,15 +24,17 @@ Slab\Component\Security\Entity\User:
             unique: true
             length: 255
             nullable: false
-        firstname:
+        firstName:
             type: string
             unique: false
             length: 255
+            column: firstname
             nullable: true
-        lastname:
+        lastName:
             type: string
             unique: false
             length: 255
+            column: lastname
             nullable: true
         password:
             type: text
@@ -40,4 +43,8 @@ Slab\Component\Security\Entity\User:
         salt:
             type: text
             unique: false
+            nullable: true
+        isActive:
+            type: boolean
             nullable: false
+            column: is_active

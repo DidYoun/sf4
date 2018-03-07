@@ -2,6 +2,7 @@
 
 namespace Slab\Component\Security\Controller;
 
+use Slab\Component\Security\Form\Type\LoginForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,11 +27,30 @@ class SecurityController extends Controller
         /** @var AuthenticationUtils $authenticationUtils */
         $authenticationUtils = $this->get('security.authentication_utils');
 
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        $form = $this->createForm(LoginForm::class, [
+            '_username' => $lastUsername
+        ]);
+
         return $this->render(
             '@Slab/Security/User/login.html.twig', [
-                'last_username' => $authenticationUtils->getLastUsername(),
-                'errors' => $authenticationUtils->getLastAuthenticationError(),
+                'form'          => $form->createView(),
+                'last_username' => $lastUsername,
+                'errors'        => $error,
             ]
         );
+    }
+
+    /**
+     * @Route("/logout",
+     *     name="slab_security.security.logout"
+     * )
+     * @throws \Exception
+     */
+    public function logoutAction()
+    {
+        throw new \Exception('Never reach');
     }
 }
