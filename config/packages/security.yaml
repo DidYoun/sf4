@@ -5,6 +5,10 @@ security:
             id: Slab\Component\Security\Provider\UserProvider
         in_memory: { memory: ~ }
 
+    encoders:
+        Slab\Component\Security\Entity\User:
+            algorithm: bcrypt
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

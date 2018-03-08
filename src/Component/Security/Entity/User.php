@@ -31,6 +31,9 @@ class User implements AdvancedUserInterface, \Serializable
     protected $lastName;
 
     /** @var string */
+    protected $plainPassword;
+
+    /** @var string */
     protected $password;
 
     /** @var string */
@@ -108,7 +111,13 @@ class User implements AdvancedUserInterface, \Serializable
     /** @return ArrayCollection */
     public function getRoles()
     {
-        return ['ROLE_USER'];
+        $roles = $this->roles;
+        // give everyone ROLE_USER!
+        if (!in_array('ROLE_USER', $roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return $roles;
     }
 
     /**  @param array $roles */
@@ -121,6 +130,18 @@ class User implements AdvancedUserInterface, \Serializable
     public function addRole(string $role): void
     {
         $this->roles[] = $role;
+    }
+
+    /** @return string */
+    public function getPlainPassword() : string
+    {
+        return $this->plainPassword;
+    }
+
+    /** @param string $plainPassword */
+    public function setPlainPassword(string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
     }
 
     /** @return string */

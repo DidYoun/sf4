@@ -9,12 +9,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
-use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 
 /**
  * Class LoginFormAuthenticator
@@ -31,20 +32,26 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     /** @var FormFactoryInterface */
     private $formFactory;
 
+    /** @var UserPasswordEncoderInterface */
+    private $passwordEncoder;
+
     /**
      * LoginFormAuthenticator constructor.
      *
      * @param RouterInterface $router
      * @param FormFactoryInterface $formFactoryBuilder
+     * @param UserPasswordEncoderInterface $passwordEncoder
      */
     public function __construct
     (
         RouterInterface $router,
-        FormFactoryInterface $formFactoryBuilder
+        FormFactoryInterface $formFactoryBuilder,
+        UserPasswordEncoderInterface $passwordEncoder
     )
     {
         $this->router = $router;
         $this->formFactory = $formFactoryBuilder;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
@@ -97,17 +104,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      */
     public function checkCredentials($credentials, UserInterface $user)
     {
-        return true;
-        dump($credentials);
-        dump($user);
-        die;
-
-        $password = $credentials['_password'];
-        if ($password == 'iliketurtles') {
+        $plainPassword = $credentials['_password'];
+        if ($this->passwordEncoder->isPasswordValid($user, $plainPassword)) {
             return true;
         }
 
-        return false;
+        throw new BadCredentialsException();
     }
 
     /**
