@@ -26,9 +26,13 @@ services:
     Slab\Component\Security\Controller\:
         resource: '../src/Component/Security/Controller'
         tags: ['controller.service_arguments']
+    Slab\Component\User\Controller\:
+        resource: '../src/Component/User/Controller'
+        tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    Slab\Component\Security\Guard\LoginFormAuthenticator:
-        class: Slab\Component\Security\Guard\LoginFormAuthenticator
+    Slab\Component\User\Doctrine\HashPasswordListener:
         autowire: true
+        tags:
+            - { name: doctrine.event_subscriber }

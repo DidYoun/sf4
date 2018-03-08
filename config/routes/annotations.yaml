@@ -2,6 +2,9 @@
 slab_core:
     resource: ../../src/Component/Core/Controller/
     type: annotation
+slab_user:
+    resource: ../../src/Component/User/Controller/
+    type: annotation
 slab_security:
     resource: ../../src/Component/Security/Controller/
     type: annotation

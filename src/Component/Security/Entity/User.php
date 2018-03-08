@@ -50,7 +50,7 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function __construct()
     {
-        $this->roles    = new ArrayCollection();
+        $this->roles    = new ArrayCollection(['ROLE_USER']);
         $this->isActive = true;
     }
 
@@ -61,7 +61,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /** @return string */
-    public function getUsername() : string
+    public function getUsername() : ?string
     {
         return $this->username;
     }
@@ -73,7 +73,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**  @return string */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -85,7 +85,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /** @return string */
-    public function getFirstName(): string
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
@@ -108,13 +108,13 @@ class User implements AdvancedUserInterface, \Serializable
         $this->lastName = $lastName;
     }
 
-    /** @return ArrayCollection */
+    /** @return array */
     public function getRoles()
     {
-        $roles = $this->roles;
-        // give everyone ROLE_USER!
-        if (!in_array('ROLE_USER', $roles)) {
-            $roles[] = 'ROLE_USER';
+        $roles = [];
+
+        foreach ($this->roles as $role) {
+            $roles[] = $role;
         }
 
         return $roles;
@@ -133,7 +133,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /** @return string */
-    public function getPlainPassword() : string
+    public function getPlainPassword() : ?string
     {
         return $this->plainPassword;
     }
@@ -142,10 +142,11 @@ class User implements AdvancedUserInterface, \Serializable
     public function setPlainPassword(string $plainPassword): void
     {
         $this->plainPassword = $plainPassword;
+        $this->password = null;
     }
 
     /** @return string */
-    public function getPassword() : string
+    public function getPassword() : ?string
     {
         return $this->password;
     }
@@ -176,6 +177,7 @@ class User implements AdvancedUserInterface, \Serializable
 
     public function eraseCredentials()
     {
+        $this->plainPassword = null;
     }
 
     public function isAccountNonExpired()

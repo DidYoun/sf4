@@ -1,0 +1,8 @@
+Slab\Component\Security\Entity\User:
+    properties:
+        username:
+            - NotBlank: ~
+        firstName:
+            - NotBlank: ~
+        lastName:
+            - NotBlank: ~
