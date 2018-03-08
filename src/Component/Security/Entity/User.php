@@ -39,7 +39,7 @@ class User implements AdvancedUserInterface, \Serializable
     /** @var bool */
     protected $isActive;
 
-    /** @var [] */
+    /** @var string [] */
     protected $roles;
 
     /**
@@ -47,7 +47,8 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function __construct()
     {
-        $this->roles = new ArrayCollection();
+        $this->roles    = new ArrayCollection();
+        $this->isActive = true;
     }
 
     /** @return int */
@@ -107,7 +108,7 @@ class User implements AdvancedUserInterface, \Serializable
     /** @return ArrayCollection */
     public function getRoles()
     {
-        return $this->roles;
+        return ['ROLE_USER'];
     }
 
     /**  @param array $roles */
@@ -171,13 +172,25 @@ class User implements AdvancedUserInterface, \Serializable
         return true;
     }
 
+    /** @see \Serializable::serialize() */
     public function serialize()
     {
-        // TODO: Implement serialize() method.
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->isActive
+        ));
     }
 
+    /** @see \Serializable::unserialize() */
     public function unserialize($serialized)
     {
-        // TODO: Implement unserialize() method.
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->isActive
+            ) = unserialize($serialized);
     }
 }

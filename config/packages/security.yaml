@@ -11,9 +11,10 @@ security:
             security: false
         main:
             anonymous: ~
+            # Logout
             logout:
                 path: /logout
-
+                target: /
             # activate different ways to authenticate
             guard:
                 authenticators:

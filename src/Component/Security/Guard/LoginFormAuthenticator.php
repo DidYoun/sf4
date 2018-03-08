@@ -4,14 +4,17 @@ namespace Slab\Component\Security\Guard;
 
 use Slab\Component\Security\Form\Type\LoginForm;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
+use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 
 /**
  * Class LoginFormAuthenticator
@@ -34,7 +37,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      * @param RouterInterface $router
      * @param FormFactoryInterface $formFactoryBuilder
      */
-    public function __construct(
+    public function __construct
+    (
         RouterInterface $router,
         FormFactoryInterface $formFactoryBuilder
     )
@@ -72,7 +76,20 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
         $data = $form->getData();
 
+        $request->getSession()->set(
+            Security::LAST_USERNAME,
+            $data['_username']
+        );
+
         return $data;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser($credentials, UserProviderInterface $userProvider)
+    {
+        return $userProvider->loadUserByUsername($credentials['_username']);
     }
 
     /**
@@ -80,6 +97,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      */
     public function checkCredentials($credentials, UserInterface $user)
     {
+        return true;
+        dump($credentials);
+        dump($user);
+        die;
+
         $password = $credentials['_password'];
         if ($password == 'iliketurtles') {
             return true;
@@ -88,20 +110,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         return false;
     }
 
-
-    public function getUser($credentials, UserProviderInterface $userProvider)
-    {
-        dump($userProvider->loadUserByUsername('test')); die;
-        $username = $credentials['_username'];
-
-        dump($username);
-        die;
-
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        // TODO: Implement onAuthenticationSuccess() method.
+        return new RedirectResponse($this->router->generate('slab_core.app.index'));
     }
 
     /**
