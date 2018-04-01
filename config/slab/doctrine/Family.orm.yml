@@ -1,0 +1,30 @@
+##
+# Entity Family
+#
+# @package     Slab\Component\Catalog\Entity
+# @author      Didier Youn <didier.youn@gmail.com>
+# @copyright   Copyright (c) 2018 Slabprea
+##
+Slab\Component\Catalog\Entity\Family:
+    type: entity
+    table: slab_family
+    repositoryClass: Slab\Component\Catalog\Repository\FamilyRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        label:
+            type: string
+            unique: true
+            length: 255
+            nullable: false
+        thumbnail:
+            type: string
+            unique: true
+            length: 255
+            nullable: false
+        isActive:
+            type: boolean
+            nullable: false
+            column: is_active

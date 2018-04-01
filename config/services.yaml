@@ -32,7 +32,29 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+
+    # <!-- Slab\Component\Catalog\* -->
+
+    # <!-- Slab\Component\Core\* -->
+    Slab\Component\Core\Manager\BaseManager:
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            
+    # <!-- Slab\Component\Enrich\* -->
+
+    # <!-- Slab\Component\Installer\* -->
+
+    # <!-- Slab\Component\Security\* -->
+
+    # <!-- Slab\Component\User\* -->
     Slab\Component\User\Doctrine\HashPasswordListener:
         autowire: true
         tags:
             - { name: doctrine.event_subscriber }
+
+    Slab\Component\User\Manager\UserManager:
+        parent: Slab\Component\Core\Manager\BaseManager
+        public: true
+        autowire: true
+        autoconfigure: false

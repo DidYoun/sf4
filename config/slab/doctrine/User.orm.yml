@@ -45,7 +45,7 @@ Slab\Component\Security\Entity\User:
             unique: false
             nullable: true
         roles:
-            type: array
+            type: json
             nullable: true
         isActive:
             type: boolean
