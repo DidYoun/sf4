@@ -2,7 +2,14 @@ Slab\Component\Security\Entity\User:
     properties:
         username:
             - NotBlank: ~
+        email:
+            - Email: ~
         firstName:
             - NotBlank: ~
         lastName:
             - NotBlank: ~
+        roles:
+            - NotBlank: ~
+
+Slab\Component\Catalog\Entity\Family:
+Slab\Component\Catalog\Entity\Category:

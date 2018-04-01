@@ -67,7 +67,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /** @param string $username */
-    public function setUsername(string $username) : void
+    public function setUsername(?string $username)
     {
         $this->username = $username;
     }
@@ -79,7 +79,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /** @param string $email */
-    public function setEmail(string $email): void
+    public function setEmail(?string $email)
     {
         $this->email = $email;
     }
@@ -91,7 +91,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /** @param string $firstName */
-    public function setFirstName(string $firstName): void
+    public function setFirstName(?string $firstName)
     {
         $this->firstName = $firstName;
     }
@@ -103,7 +103,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**  @param string $lastName */
-    public function setLastName(string $lastName) : void
+    public function setLastName(?string $lastName)
     {
         $this->lastName = $lastName;
     }
@@ -121,15 +121,17 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**  @param array $roles */
-    public function setRoles(array $roles): void
+    public function setRoles(?array $roles)
     {
         $this->roles = $roles;
     }
 
     /**  @param string $role */
-    public function addRole(string $role): void
+    public function addRole(?string $role)
     {
-        $this->roles[] = $role;
+        if (!$this->roles->contains($role)) {
+            $this->roles->add($role);
+        }
     }
 
     /** @return string */
@@ -139,7 +141,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /** @param string $plainPassword */
-    public function setPlainPassword(string $plainPassword): void
+    public function setPlainPassword(?string $plainPassword)
     {
         $this->plainPassword = $plainPassword;
         $this->password = null;
@@ -152,7 +154,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /** @param string $password */
-    public function setPassword(string $password): void
+    public function setPassword(?string $password)
     {
         $this->password = $password;
     }
@@ -170,7 +172,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**  @param string $salt */
-    public function setSalt(string $salt): void
+    public function setSalt(?string $salt)
     {
         $this->salt = $salt;
     }
@@ -202,7 +204,8 @@ class User implements AdvancedUserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
-            $this->isActive
+            $this->isActive,
+            $this->roles
         ));
     }
 
@@ -213,7 +216,8 @@ class User implements AdvancedUserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
-            $this->isActive
+            $this->isActive,
+            $this->roles
             ) = unserialize($serialized);
     }
 }

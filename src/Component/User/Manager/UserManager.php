@@ -13,5 +13,4 @@ use Slab\Component\Core\Manager\BaseManager;
  */
 class UserManager extends BaseManager
 {
-
 }

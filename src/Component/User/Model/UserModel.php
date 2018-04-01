@@ -2,8 +2,7 @@
 
 namespace Slab\Component\User\Model;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Slab\Component\Security\Entity\User;
+use Slab\Component\User\Model\Validator\UserValidator;
 
 /**
  * Class UserModel
@@ -14,35 +13,24 @@ use Slab\Component\Security\Entity\User;
  */
 class UserModel
 {
-    /** @var EntityManagerInterface $em */
-    private $em;
+    /** @var UserValidator */
+    private $validator;
 
     /**
      * UserModel constructor.
      *
-     * @param EntityManagerInterface $entityManager
+     * @param UserValidator $userValidator
      */
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(UserValidator $userValidator)
     {
-        $this->em = $entityManager;
+        $this->validator = $userValidator;
     }
 
     /**
-     * @param User $user
+     * @return UserValidator
      */
-    public function save(User $user)
+    public function getValidator() : UserValidator
     {
-        $this->em->persist($user);
-        $this->em->flush();
-    }
-
-    public function edit()
-    {
-
-    }
-
-    public function delete()
-    {
-
+        return $this->validator;
     }
 }
