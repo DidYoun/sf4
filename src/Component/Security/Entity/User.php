@@ -3,8 +3,6 @@
 namespace Slab\Component\Security\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Slab\Component\Core\Entity\CoreEntity;
-use Slab\Component\Core\Entity\CoreEntityInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
@@ -14,7 +12,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  * @author      Didier Youn <didier.youn@gmail.com>
  * @copyright   Copyright (c) 2018 Slabprea
  */
-class User extends CoreEntity implements AdvancedUserInterface, \Serializable, CoreEntityInterface
+class User implements AdvancedUserInterface, \Serializable
 {
 
     /** @var int */

@@ -12,4 +12,15 @@ namespace Slab\Component\Catalog\Entity;
 class Category
 {
 
+    /** @var int */
+    protected $id;
+
+    /** @var string */
+    protected $label;
+
+    /** @var string */
+    protected $thumbnail;
+
+    /** @var bool */
+    protected $isActive;
 }

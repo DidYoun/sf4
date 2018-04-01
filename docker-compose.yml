@@ -1,0 +1,124 @@
+###########################
+# Slabprea Docker Compose #
+###########################
+version: '3'
+
+services:
+    ###############
+    # Application #
+    ###############
+    application:
+        build:
+            context: ./docker/containers/application
+            args:
+                APP_PROJECT_DIR_NAME: ${APP_PROJECT_DIR_NAME}
+        image: slab/app
+        container_name: slab_app
+        working_dir: /var/www/project
+        volumes:
+            - .:/var/www/project/
+            #- ./vendor:/var/www/project/vendor
+        tty: true
+        networks:
+          - slabprea
+
+    #############
+    # Databases #
+    #############
+
+    # > Mysql
+    db:
+        image: mysql:5.7
+        container_name: slab_db
+        volumes:
+            - ./docker/datas/mysql/:/var/lib/mysql
+        ports:
+            - 3307:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASS}
+        networks:
+          - slabprea
+
+    #######
+    # PHP #
+    #######
+
+    # > PHP 7.2
+    php:
+        build:
+            context: ./docker/containers/php/7.2
+            args:
+                APP_PROJECT_DIR_NAME: ${APP_PROJECT_DIR_NAME}
+        image: slab/php7.2-fpm
+        container_name: slab_php
+        working_dir: /var/www/project
+        ports:
+            - 9000:9000
+        volumes:
+            - .:/var/www/project/
+        links:
+            - db:db-host
+        depends_on:
+            - mailhog
+        env_file: .env
+        networks:
+          - slabprea
+
+    ###########
+    # Servers #
+    ###########
+
+    # Nginx
+    nginx:
+        build:
+            context: ./docker/containers/nginx
+            args:
+               APP_PROJECT_TYPE: ${APP_PROJECT_TYPE}
+        image: slab/nginx
+        container_name: slab_web
+        environment:
+            APP_SERVER_NAME: ${APP_SERVER_NAME}
+            APP_PROJECT_DIR_NAME: ${APP_PROJECT_DIR_NAME}
+        volumes:
+            - .:/var/www/project/
+        ports:
+            - 8080:80
+            - 443:443
+        links:
+            - php:php-host
+        networks:
+          - slabprea
+
+    ###############
+    #    Email    #
+    ###############
+
+    # > Mailhog
+    mailhog:
+        image: mailhog/mailhog
+        container_name: slab_mail
+        ports:
+            - 1025:1025
+            - 8025:8025
+        networks:
+          - slabprea
+
+networks:
+  slabprea: ~
+
+volumes:
+  slab_app:
+      driver: local-persist
+      driver_opts:
+        mountpoint: ./src
+  slab_config:
+    driver: local-persist
+    driver_opts:
+      mountpoint: ./config
+  slab_composer:
+    driver: local-persist
+    driver_opts:
+      mountpoint: ./composer.json

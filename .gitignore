@@ -2,6 +2,9 @@
 .idea/
 .phpspec.yml
 
+###> slabprea/docker ###
+/docker/datas/*
+
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/

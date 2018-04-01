@@ -22,6 +22,12 @@ doctrine:
             SlabUser:
                 is_bundle: false
                 type: yml
-                dir: '%kernel.project_dir%/config/slab/doctrine'
+                dir: '%kernel.project_dir%/config/slab/doctrine/Security'
                 alias: Slab
                 prefix: 'Slab\Component\Security\Entity'
+            SlabCatalog:
+                is_bundle: false
+                type: yml
+                dir: '%kernel.project_dir%/config/slab/doctrine/Catalog'
+                alias: Slab
+                prefix: 'Slab\Component\Catalog\Entity'
