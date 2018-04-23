@@ -1,0 +1,24 @@
+.sidebar {
+  width: 100px;
+  height: 100vh;
+  box-shadow: 2px 0px 10px #c8c8c8;
+  background-color: white;
+  z-index: 2;
+  position: fixed;
+  top: 0; }
+  .sidebar img {
+    width: 50%;
+    display: block;
+    margin: 0px auto;
+    padding-top: 20px;
+    padding-bottom: 50px; }
+  .sidebar .menuItems svg {
+    display: block;
+    margin: 10px auto; }
+  .sidebar .menuItems p, .sidebar .menuItems a {
+    text-align: center; }
+  .sidebar .menuItems a {
+    display: block;
+    color: #CDCDCD; }
+  .sidebar .menuItems g {
+    stroke: blue; }

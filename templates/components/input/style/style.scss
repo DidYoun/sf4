@@ -1,0 +1,11 @@
+@import '../../../styles/core.scss';
+
+
+.form-flex {
+  display: flex;
+
+  input {
+    border-color: transparent;
+    color: $c-black;
+  }
+}
