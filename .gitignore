@@ -16,3 +16,12 @@
 .web-server-pid
 ###< symfony/web-server-bundle ###
 node_modules
+
+### generated component css
+/templates/components/**/*.css
+
+### generated container css
+/templates/container/**/*.css
+
+### generated view css
+/templates/views/**/*.css
