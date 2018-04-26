@@ -1,0 +1,99 @@
+// =============================================
+// Base Colors
+// =============================================
+
+// Background Color
+
+$b-black: #000;
+$b-gray: #333;
+$b-light-gray: #F3F3F3;
+$b-white: #FFF;
+
+// Color
+
+$c-black: #000;
+$c-gray: #333;
+$c-light-gray: #888;
+$c-white: #FFF;
+$c-green: #75CD39;
+$c-red: #F12F2F;
+$c-orange: #FC952F;
+
+// Text
+
+$c-text: #555;
+$c-text-gray: #4D4D4D;
+$c-text-dark-gray: #333;
+$c-text-white: #FFF;
+
+// Interaction
+
+$c-action: $c-black;
+$c-stimulus: darken($c-black, 15%);
+$c-subtle: #A0A0A0;
+
+// Notifications
+
+$c-danger: #ff9c87;
+$c-danger-background: #FAEBE7;
+
+$c-success: $c-green;
+$c-success-background: #EFF5EA;
+
+$c-warn: #ff9c87;
+$c-warn-background: #ff9c87;
+
+$c-dark: #676157;
+
+// Link
+$c-link: $c-action;
+$c-link-hover: darken($c-action, 5%);
+$c-link-focus: $c-action;
+$c-link-active: darken($c-action, (5% / 2));
+
+// Buttons
+
+$c-button: $c-white;
+$c-button-hover: darken($c-white, 5%);
+$c-button-active: darken($c-white, 10%);
+
+// Secondary Buttons
+
+$c-button-secondary: #DDDDDD;
+$c-button-secondary-hover: darken(#DDDDDD, 5%);
+$c-button-secondary-active: darken(#DDDDDD, 10%);
+
+$c-button-subtle: #ECECEC;
+
+// Forms
+
+$c-input-border: #C0C0C0;
+$c-input-border-focus: $c-black;
+
+$c-input-placeholder: $c-text-gray;
+$c-input-text: $c-text;
+
+$c-fieldset-border: #CCCCCC;
+$c-fieldset-border-light: #EDEDED;
+
+// Headings
+
+$c-h1: $c-black;
+$c-h2: $c-text;
+$c-h3: $c-text;
+$c-h4: $c-text;
+$c-h5: $c-text;
+$c-h6: $c-text;
+
+// Fonts
+
+$f-ubuntu : 'Ubuntu', Verdana, Arial, sans-serif;
+
+// Font Size
+$f-size-xl: 20px;
+$f-size-l: 16px;
+$f-size-m: 14px;
+$f-size: 13px;
+$f-size-x: 12px;
+$f-size-xs: 11px;
+$f-size-xss: 9px;

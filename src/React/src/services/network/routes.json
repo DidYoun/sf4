@@ -1,0 +1,14 @@
+{
+  "get": [
+    {
+      "slabToto": "https://slabtoto/stuff/<%token%>",
+      "slabFoo" : "https://slabtoto/twostuff/<%token%>" 
+    }
+  ],
+  "post": [
+    {
+      "slabLoc": "https://slabtoto/stuff/<%userId%>",
+      "slabLol": "https://slabtoto/"
+    }
+  ]
+}

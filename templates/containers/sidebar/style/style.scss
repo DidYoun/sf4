@@ -1,0 +1,40 @@
+@import '../../../../src/React/src/styles/colors.scss';
+
+.sidebar {
+  width: 100px;
+  height: 100vh;
+  box-shadow: 2px 0px 10px rgb(200,200,200);
+  background-color: white;
+  z-index: 2;
+  position: fixed;
+  top: 0;
+
+  img {
+    width: 50%;
+    display: block;
+    margin: 0px auto;
+    padding-top: 20px;
+    padding-bottom: 50px;
+  }
+  
+  .menuItems {
+
+    svg {
+      display: block;
+      margin: 10px auto;
+    }
+
+    p, a {
+      text-align: center;
+    }
+
+    a {
+      display: block;
+      color: $topbar;
+    }
+
+    g {
+      stroke: blue;
+    }
+  }
+}
