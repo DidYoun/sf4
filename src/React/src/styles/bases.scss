@@ -1,0 +1,32 @@
+
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $f-ubuntu;
+  font-weight: 100;
+  font-size: $f-size;
+  color: $c-gray;
+}
+
+header {
+  display: flex;
+  background-color: #F3F3F3;
+  position: absolute;
+}
+
+.App-body {
+  position: relative;
+  left: 100px;
+  min-height: 100vh;
+  height: 100%;
+  width: calc(100% - 100px);
+  background-color: $b-light-gray;
+
+  .app-content {
+    height: 100%;
+  }
+}

@@ -13,9 +13,7 @@ import Orders from '../../../templates/views/orders/Orders';
 import Users from '../../../templates/views/users/Users';
 import Settings from '../../../templates/views/settings/Settings';
 
-
-import './styles/base/reset.css';
-import './styles/index.css';
+import '../../../public/src/React/src/styles/base/reset.css';
 
 let boilerPlate = null;
 
