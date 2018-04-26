@@ -6,11 +6,6 @@ if (Encore.isProduction()) {
 }
 
 Encore
-  // add the custom svg loader
-  .addLoader({
-    test: /\.svg$/,
-    loader: 'svg-sprite-loader'
-  })
   // the project directory where all compiled assets will be stored
   .setOutputPath('public/build/')
 
@@ -36,5 +31,23 @@ Encore
   // .enableVersioning()
 
 const config = Encore.getWebpackConfig();
+
+// add svg loader
+const rules = config.module.rules;
+// loop threw the rules 
+// /!\ Mutation of the rules array
+for (let idx = 0; idx < rules.length; idx++) {
+  if (rules[idx].loader === 'file-loader') {
+    // update the rules of the file loader
+    rules[idx].test = /\.(png|jpg|jpeg|gif|ico|webp)$/;
+
+    // add the svg loader
+    rules.splice(idx, 0, {
+      test: /\.svg$/,
+      loader: 'svg-sprite-loader'
+    });
+    idx = rules.length;
+  }
+}
 
 module.exports = config;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './style/style.css';
+import '../../../public/styles/components/label/style/style.css';
 
 class Label extends Component {
   /**

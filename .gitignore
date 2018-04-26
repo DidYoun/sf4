@@ -25,3 +25,9 @@ node_modules
 
 ### generated view css
 /templates/views/**/*.css
+
+### generated webpack files
+public/build
+
+### generated css
+public/styles

@@ -4,7 +4,7 @@ import Error from '../../components/error/Error';
 import PropsTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import { getApiManagerInstance } from '../../../src/React/src/services/network/api_manager';
-import './style/style.css';
+import '../../../public/styles/views/users/style/style.css';
 
 class Users extends Component {
   /**

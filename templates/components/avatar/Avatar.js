@@ -1,4 +1,4 @@
-import './style/style.css';
+import '../../../public/styles/components/avatar/style/style.css';
 import React, { Component } from 'react';
 import PropsType from 'prop-types';
 import { isEmpty } from 'lodash';

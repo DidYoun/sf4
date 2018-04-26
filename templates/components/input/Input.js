@@ -1,4 +1,4 @@
-import './style/style.css';
+import '../../../public/styles/components/input/style/style.css';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 

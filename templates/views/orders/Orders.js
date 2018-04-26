@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import OrderList from '../../containers/order/Lists';
-import './style/style.css';
+import '../../../public/styles/views/orders/style/style.css';
 
 export default class Orders extends Component {
   /**

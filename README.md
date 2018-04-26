@@ -39,3 +39,23 @@ orm:
           prefix: 'Slab\Component\Security\Entity' 
 ```
 
+## React integration
+
+Everything will be build within the ***public/build*** folder. Note that temporary folder will be created within the ***public/*** folder such as style
+
+- Installation
+
+Please use the commands below
+
+```
+yarn install
+````
+
+- Run
+
+```
+- Dev mode: yarn start (this will watch your file)
+- Prod|Export mode: yarn build
+```
+
+

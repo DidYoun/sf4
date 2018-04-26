@@ -1,4 +1,4 @@
-import './style/banner.css';
+import '../../../public/styles/components/banner/style/banner.css';
 import React, { Component } from 'react';
 
 /** 

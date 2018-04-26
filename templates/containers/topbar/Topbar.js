@@ -1,4 +1,4 @@
-import './style/style.css';
+import '../../../public/styles/containers/topbar/style/style.css';
 import React, { Component } from 'react';
 import Input from '../../components/input/Input';
 import Avatar from '../../components/avatar/Avatar';

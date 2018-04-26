@@ -1,4 +1,4 @@
-import './style/style.css';
+import '../../../public/styles/containers/sidebar/style/style.css';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import SvgIcon from '../../components/svg/SvgComponent';

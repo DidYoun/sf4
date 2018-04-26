@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Avatar from '../../components/avatar/Avatar';
 import Label from '../../components/label/Label';
-import './style/style.css';
+import '../../../public/styles/containers/profile/style/style.css';
 
 class Profile extends Component {
   /**

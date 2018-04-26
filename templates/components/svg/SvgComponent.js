@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropsType from 'prop-types';
 import { isEmpty, isNaN } from 'lodash';
-import './style/style.css';
+import '../../../public/styles/components/svg/style/style.css';
 
 // Define a constant for the icon size
 const iconSize = {
@@ -42,7 +42,6 @@ export default class SvgIcon extends Component {
    * Render
    */
   render() {
-    console.log(this.props.icon);
     return (
       <svg viewBox={this.props.icon.viewBox} width={this.getSize(this.props.size)}>
         <use xlinkHref={`#${this.props.icon.id}`}/>
